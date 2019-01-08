@@ -1,0 +1,17 @@
+{
+  "name": "Nebula",
+  "version": "1.0.0",
+  "repository": "https://github.com/reebr/nebula.git",
+  "author": "Renan Gomes <renan.gomes@live.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^9.4.4",
+    "parcel-bundler": "^1.11.0",
+    "pug": "^2.0.3",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {
+    "dev": "parcel static/template/index.pug",
+    "build": "parcel build static/template/index.pug"
+  }
+}

@@ -1,0 +1,10 @@
+# Editors/IDEs
+.vs
+.vscode
+.idea
+
+# Python
+*.pyc
+
+# Node
+node_modules
