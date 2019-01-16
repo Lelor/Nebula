@@ -1,10 +1,14 @@
-# Editors/IDEs
+# Editors / IDEs
 .vs
 .vscode
 .idea
 
 # Python
 *.pyc
+*.egg-info
 
 # Node
 node_modules
+
+# Env / tests / coverage
+.tox
