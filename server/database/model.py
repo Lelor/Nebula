@@ -1,6 +1,7 @@
 from bcrypt import hashpw, gensalt, checkpw
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -30,3 +31,11 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User(username={self.username}, email={self.email}, password={self.password})>'
+
+
+class Article(db.Model):
+    id = Column(Integer, primary_key=True)
+    title = Column(String, unique=True)
+
+    created_by = relationship('User')
+    created_by_id = Column(Integer, ForeignKey('user.id'))
