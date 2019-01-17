@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 tox = "*"
 ipdb = "*"
+flask-migrate = "*"
+flask-script = "*"
 
 [packages]
 flask = "*"
