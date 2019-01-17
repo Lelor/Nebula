@@ -12,3 +12,7 @@ node_modules
 
 # Env / tests / coverage
 .tox
+
+# Database
+migrations/
+storage.db
