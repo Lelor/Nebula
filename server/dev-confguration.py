@@ -1,3 +1,5 @@
+from os.path import join, abspath, dirname
+
 ENV = 'development'
 DEBUG = True
 
@@ -9,5 +11,5 @@ SESSION_COOKIE_NAME = 'test-session'
 # JSON formatting
 JSONIFY_PRETTYPRINT_REGULAR = True
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///storage.db'
+SQLALCHEMY_DATABASE_URI = f'sqlite:///{join(abspath(dirname(__file__)), "storage.db")}'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
