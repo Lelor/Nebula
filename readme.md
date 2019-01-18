@@ -1,4 +1,3 @@
-
 <h1 align='center'>
     <img src='static/image/logo-64x64.png'><br>
     Nebula
@@ -20,11 +19,11 @@
     </a>
 </div>
 
-# About
+# Nebula
 
 . . . 
 
-# Migrations
+## Migrations
 
 For initialize, run migrations and create database tables:
 
@@ -36,7 +35,3 @@ py server db upgrade
 
 🚧 SQLite does not support dropping, so if any column is removed you should remove `migrations` 
 folder and the database file inside `/server`, and then, run the script above again.
-
-
-[1]:https://travis-ci.org/reebr/Nebula.svg?branch=development
-[2]:https://travis-ci.org/reebr/Nebula
