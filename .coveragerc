@@ -13,3 +13,5 @@ source = server
 omit =
     test/*
     static/*
+    server/dev-confguration.*
+    server/__main__.*

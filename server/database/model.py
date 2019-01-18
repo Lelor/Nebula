@@ -34,10 +34,10 @@ class User(db.Model):
     def __init__(self, username: str, email: str, password: str):
         self.username = username
         self.email = email
-        self.password = hashpw(password.encode(), gensalt())
+        self.password = hashpw(bytes(password, 'utf8'), gensalt())
 
     def check_password(self, password: str) -> bool:
-        return checkpw(password, self.password)
+        return checkpw(bytes(password, 'utf8'), self.password)
 
     def __repr__(self):
         return f'<User(username={self.username}, email={self.email}, password={self.password})>'

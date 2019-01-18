@@ -13,6 +13,7 @@ node_modules
 # Env / tests / coverage
 .tox
 .coverage
+htmlcov
 
 # Database
 migrations/
