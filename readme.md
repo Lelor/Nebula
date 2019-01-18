@@ -9,6 +9,9 @@
     <a href='https://travis-ci.org/reebr/Nebula'>
         <img src='https://travis-ci.org/reebr/Nebula.svg?branch=development'>
     </a>
+    <a href="https://codecov.io/gh/reebr/Nebula">
+        <img src="https://codecov.io/gh/reebr/Nebula/branch/development/graph/badge.svg" />
+    </a>
     <a href='https://github.com/reebr/Nebula/commits/development'>
         <img src='https://img.shields.io/github/last-commit/reebr/nebula.svg'>
     </a>
