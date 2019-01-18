@@ -8,12 +8,8 @@ source = server
         pragma: no cover
         raise NotImplementedError
         if __name__ == .__main__.:
-
-    omit =
-        static/*
-        test/*
-
     ignore_errors = True
 
 omit =
     test/*
+    static/*
