@@ -1,9 +1,11 @@
 
 <h1 align='center'>
-    <img src='static/image/logo-32x32.png'><br>
+    <img src='static/image/logo-64x64.png'><br>
     Nebula
-    <br>
-    <br>
+</h1>
+<h4 align='center'>A simple wiki client</h4>
+<br>
+<div align='center'>
     <a href='https://travis-ci.org/reebr/Nebula'>
         <img src='https://travis-ci.org/reebr/Nebula.svg?branch=development'>
     </a>
@@ -13,8 +15,11 @@
     <a href='https://github.com/reebr/nebula/issues'>
         <img src='https://img.shields.io/github/issues/reebr/nebula.svg'>
     </a>
-</h1>
+</div>
 
+# About
+
+. . . 
 
 # Migrations
 
