@@ -23,7 +23,7 @@
 
 # Migrations
 
-For initialize, run migrations and create database tables, run:
+For initialize, run migrations and create database tables:
 
 ```sh
 py server db init
