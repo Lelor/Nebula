@@ -9,6 +9,10 @@ source = server
         raise NotImplementedError
         if __name__ == .__main__.:
 
+    omit =
+        static/*
+        test/*
+
     ignore_errors = True
 
 omit =
