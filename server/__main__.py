@@ -4,9 +4,11 @@ from flask_script import Manager
 
 from server.blueprints import configure_blueprints
 from server.database.model import db
+from server.encoder import Encoder
 
 app = Flask(__name__)
-app.config.from_object('dev-confguration')
+app.config.from_object('server.dev-confguration')
+app.json_encoder = Encoder
 
 #registering blueprints
 configure_blueprints(app)

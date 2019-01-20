@@ -3,15 +3,9 @@ branch = True
 source = server
 
 [report]
-    exclude_lines =
-        if self.debug:
-        pragma: no cover
-        raise NotImplementedError
-        if __name__ == .__main__.:
-    ignore_errors = True
+exclude_lines =
+    pragma: no cover
 
 omit =
-    test/*
-    static/*
-    server/dev-confguration.*
-    server/__main__.*
+    server/dev-confguration.py
+    server/__main__.py

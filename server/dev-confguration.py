@@ -11,5 +11,6 @@ SESSION_COOKIE_NAME = 'test-session'
 # JSON formatting
 JSONIFY_PRETTYPRINT_REGULAR = True
 
-SQLALCHEMY_DATABASE_URI = f'sqlite:///{join(abspath(dirname(__file__)), "storage.db")}'
+path = storage_path = join(abspath(dirname(__file__)), "storage.db")
+SQLALCHEMY_DATABASE_URI = f'sqlite:///{storage_path}'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
