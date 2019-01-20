@@ -1,8 +1,16 @@
 from bcrypt import hashpw, gensalt, checkpw
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean, Table
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Boolean,
+    DateTime,
+    func,
+    ForeignKey,
+    Table
+)
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
@@ -14,8 +22,8 @@ class Category(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
 
-    def __repr__(self):
-        return f'<Category(name={self.name})>'
+    def __repr__(self):  # pragma: no cover
+        return f'<Category(id={self.id}, name={self.name})>'
 
 
 class User(db.Model):
@@ -31,16 +39,23 @@ class User(db.Model):
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    def __init__(self, username: str, email: str, password: str):
-        self.username = username
-        self.email = email
-        self.password = hashpw(bytes(password, 'utf8'), gensalt())
+    def hash_password(self):
+        self.password = hashpw(bytes(self.password, 'utf8'), gensalt())
 
     def check_password(self, password: str) -> bool:
         return checkpw(bytes(password, 'utf8'), self.password)
 
-    def __repr__(self):
-        return f'<User(username={self.username}, email={self.email}, password={self.password})>'
+    def __repr__(self):  # pragma: no cover
+        return '<User(id={}, username={}, password={}, email={}, ' \
+               'is_moderator={}, created_at={})>'\
+            .format(
+                self.id,
+                self.username,
+                self.password,
+                self.email,
+                self.is_moderator,
+                self.created_at
+            )
 
 
 class ArticleContent(db.Model):
@@ -53,8 +68,23 @@ class ArticleContent(db.Model):
     author = relationship('User')
     author_id = Column(Integer, ForeignKey('user.id'))
 
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
     is_approved_by_author = Column(Boolean, default=False)
     is_approved_by_moderator = Column(Boolean, default=False)
+
+    def __repr__(self):  # pragma: no cover
+        return 'ArticleContent(id={}, text={}, author={}, ' \
+               'is_approved_by_author={}, is_approved_by_moderator={}, ' \
+               'created_at={}'\
+            .format(
+                self.id,
+                self.text,
+                self.author,
+                self.is_approved_by_author,
+                self.is_approved_by_moderator,
+                self.created_at
+            )
 
 
 # Association table for link users that consider an article useful.
@@ -90,3 +120,16 @@ class Article(db.Model):
 
     useful_users = relationship('User', secondary=useful_users)
     useless_users = relationship('User', secondary=useless_users)
+
+    def __repr__(self):  # pragma: no cover
+        return 'Article(id={}, title={}, created_by={}, created_at={}, ' \
+               'updated_at={}, useful_users={}, useless_users={})'\
+            .format(
+                self.id,
+                self.title,
+                self.created_by,
+                self.created_at,
+                self.updated_at,
+                self.useful_users,
+                self.useless_users
+            )
