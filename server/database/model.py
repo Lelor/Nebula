@@ -1,8 +1,16 @@
 from bcrypt import hashpw, gensalt, checkpw
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean, Table
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Boolean,
+    DateTime,
+    func,
+    ForeignKey,
+    Table
+)
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
@@ -40,7 +48,10 @@ class User(db.Model):
         return checkpw(bytes(password, 'utf8'), self.password)
 
     def __repr__(self):
-        return f'<User(username={self.username}, email={self.email}, password={self.password})>'
+        return \
+            f'<User(username={self.username}, ' \
+            f'email={self.email}, ' \
+            f'password={self.password})>'
 
 
 class ArticleContent(db.Model):
