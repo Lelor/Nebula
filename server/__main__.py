@@ -6,7 +6,7 @@ from server.blueprints import configure_blueprints
 from server.database.model import db
 
 app = Flask(__name__)
-app.config.from_object('server.dev-confguration')
+app.config.from_object('dev-confguration')
 
 #registering blueprints
 configure_blueprints(app)
