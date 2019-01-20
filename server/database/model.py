@@ -22,7 +22,7 @@ class Category(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return f'<Category(id={self.id}, name={self.name})>'
 
 
@@ -45,7 +45,7 @@ class User(db.Model):
     def check_password(self, password: str) -> bool:
         return checkpw(bytes(password, 'utf8'), self.password)
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return '<User(id={}, username={}, password={}, email={}, ' \
                'is_moderator={}, created_at={})>'\
             .format(
@@ -73,7 +73,7 @@ class ArticleContent(db.Model):
     is_approved_by_author = Column(Boolean, default=False)
     is_approved_by_moderator = Column(Boolean, default=False)
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return 'ArticleContent(id={}, text={}, author={}, ' \
                'is_approved_by_author={}, is_approved_by_moderator={}, ' \
                'created_at={}'\
@@ -120,3 +120,16 @@ class Article(db.Model):
 
     useful_users = relationship('User', secondary=useful_users)
     useless_users = relationship('User', secondary=useless_users)
+
+    def __repr__(self):  # pragma: no cover
+        return 'Article(id={}, title={}, created_by={}, created_at={}, ' \
+               'updated_at={}, useful_users={}, useless_users={})'\
+            .format(
+                self.id,
+                self.title,
+                self.created_by,
+                self.created_at,
+                self.updated_at,
+                self.useful_users,
+                self.useless_users
+            )
