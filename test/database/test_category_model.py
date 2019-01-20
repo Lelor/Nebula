@@ -6,5 +6,5 @@ from server.database.model import Category
 class TestCategoryModel(TestCase):
 
     def test_model_repr(self):
-        expected_repr = '<Category(name=test-category)>'
-        self.assertEqual(expected_repr, Category(name='test-category').__repr__())
+        expected_repr = '<Category(id=1, name=test-category)>'
+        self.assertEqual(expected_repr, Category(id=1, name='test-category').__repr__())
