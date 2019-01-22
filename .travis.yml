@@ -1,13 +1,10 @@
 language: python
 
-sudo: yes
-dist: xenial
-
 python:
-  - 3.7
+  - "3.7-dev"
 
 install:
-  - pip install tox-travis codecov
+  - pip install tox codecov
 
 script:
   - tox
