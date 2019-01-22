@@ -3,20 +3,19 @@ from unittest import TestCase, mock
 
 from flask import Flask, url_for
 
-from server.blueprints import configure_blueprints
+from server.__main__ import app
 from server.database.model import User
 
 class TestSignUp(TestCase):
 
     def setUp(self):
-        self.app = Flask(__name__)
+        self.app = app
         self.app.testing = True
         self.app_context = self.app.test_request_context()
         self.app_context.push()
-        configure_blueprints(self.app)
         self.client = self.app.test_client()
     
-    @mock.patch('server.controller.contributor.username_exists', return_value=False)
+    @mock.patch('server.controllers.contributor.username_exists', return_value=False)
     def test_check_duplicate_should_return_success_message_if_user_does_not_exist(self, mocked_function):
         r = self.client.post(url_for("contributor.check_duplicate_username"),
                              data=dict(username='foo'))
@@ -24,7 +23,7 @@ class TestSignUp(TestCase):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(json.loads(r.data), expected_data)
 
-    @mock.patch('server.controller.contributor.username_exists', return_value=True)
+    @mock.patch('server.controllers.contributor.username_exists', return_value=True)
     def test_check_duplicate_should_return_error_message_if_user_does_exist(self, mocked_function):
         r = self.client.post(url_for("contributor.check_duplicate_username"),
                              data=dict(username='foo'))
@@ -39,7 +38,7 @@ class TestSignUp(TestCase):
         self.assertEqual(r.status_code, 400)
         self.assertEqual(json.loads(r.data), expected_data)
 
-    @mock.patch('server.controller.contributor.email_exists', return_value=False)
+    @mock.patch('server.controllers.contributor.email_exists', return_value=False)
     def test_check_duplicate_should_return_success_message_if_email_does_not_exist(self, mocked_function):
         r = self.client.post(url_for("contributor.check_duplicate_email"),
                              data=dict(email='foo'))
@@ -47,7 +46,7 @@ class TestSignUp(TestCase):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(json.loads(r.data), expected_data)
 
-    @mock.patch('server.controller.contributor.email_exists', return_value=True)
+    @mock.patch('server.controllers.contributor.email_exists', return_value=True)
     def test_check_duplicate_should_return_error_message_if_email_does_exist(self, mocked_function):
         r = self.client.post(url_for("contributor.check_duplicate_email"),
                              data=dict(email='foo'))

@@ -2,7 +2,7 @@ from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from server.blueprints import configure_blueprints
+from server.controllers.contributor import bp as contributor_bp
 from server.database.model import db
 from server.encoder import Encoder
 
@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.config.from_object('server.dev-confguration')
 app.json_encoder = Encoder
 
-#registering blueprints
-configure_blueprints(app)
+# registering blueprints
+app.register_blueprint(contributor_bp)
 
 # Initializing database.
 db.init_app(app)
