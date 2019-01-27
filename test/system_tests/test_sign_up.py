@@ -1,10 +1,9 @@
 import json
 from unittest import TestCase, mock
 
-from flask import Flask, url_for
+from flask import url_for
 
 from server.__main__ import app
-from server.database.model import User
 
 class TestSignUp(TestCase):
 
