@@ -1,3 +1,5 @@
+from os.path import join, abspath, dirname
+
 from bcrypt import hashpw, gensalt, checkpw
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
@@ -8,9 +10,14 @@ from sqlalchemy import (
     DateTime,
     func,
     ForeignKey,
-    Table
+    Table,
+    create_engine
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, scoped_session, sessionmaker
+
+
+storage_path = join(dirname(abspath(dirname(__file__))), "storage.db")
+db_uri = f'sqlite:///{storage_path}'
 
 db = SQLAlchemy()
 
@@ -133,3 +140,7 @@ class Article(db.Model):
                 self.useful_users,
                 self.useless_users
             )
+
+
+engine = create_engine(db_uri)
+session = scoped_session(sessionmaker(bind=engine))
