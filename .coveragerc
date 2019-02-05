@@ -7,5 +7,5 @@ exclude_lines =
     pragma: no cover
 
 omit =
-    server/dev-confguration.py
+    server/manage.py
     server/__main__.py

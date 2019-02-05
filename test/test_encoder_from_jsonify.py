@@ -3,7 +3,7 @@ from unittest import TestCase
 
 from flask import jsonify
 
-from server.__main__ import app
+from server import create_app
 from server.database.model import Category, User, Article, ArticleContent
 from server.encoder import DATE_PATTERN
 
@@ -11,7 +11,7 @@ from server.encoder import DATE_PATTERN
 class TestEncoder(TestCase):
 
     def setUp(self):
-        self.app = app
+        self.app = create_app()
         self.app.testing = True
         self.app.config['SERVER_NAME'] = 'localhost.domain'
         self.app_context = self.app.test_request_context()
