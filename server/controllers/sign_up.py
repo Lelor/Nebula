@@ -63,4 +63,4 @@ def register_new_user():
     register_user(request.form)
     return make_response(
         jsonify({'success': 'user registered'})
-    )
+    ), 201

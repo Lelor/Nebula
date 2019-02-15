@@ -18,7 +18,6 @@ class BaseConfig:
 
 
 class DevConfig(BaseConfig):
-    XPTO = 'ABC123'
     ENV = 'teste'
     DEBUG = True
 
