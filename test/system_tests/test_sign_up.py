@@ -76,7 +76,7 @@ class TestSignUp(TestCase):
                              data=data)
         expected_data = {'success': 'user registered'}
         m_register_user.assert_called_once()
-        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.status_code, 201)
         self.assertEqual(json.loads(r.data), expected_data)
 
     def test_sign_up_route_with_invalid_data_should_send_missing_fields(self):
