@@ -1,6 +1,5 @@
 from unittest import TestCase, mock
 
-from server.database.model import User
 from server.helpers.sign_up import (username_exists,
                                     email_exists,
                                     get_missing_fields,
@@ -68,6 +67,7 @@ class TestSignUp(TestCase):
         call = m_session.add.call_args_list[0][0][0]
         self.assertEqual(call.is_moderator, None)
 
+    @classmethod
     @mock.patch('server.helpers.sign_up.session')
     def test_rollback_should_be_called_if_an_exception_is_raised_and_there_is_invalid_data(self, m_session):
         """Validates that the rollback is called if an exception is raised"""
@@ -80,7 +80,8 @@ class TestSignUp(TestCase):
         }
         register_user(data)
         m_session.rollback.assert_called_once()
-    
+
+    @classmethod
     @mock.patch('server.helpers.sign_up.session')
     def test_rollback_should_be_called_if_an_exception_is_raised_and_there_is_no_invalid_data(self, m_session):
         """Validates that the rollback is called if an exception is raised"""

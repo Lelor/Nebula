@@ -14,7 +14,7 @@ def email_exists(email: str) -> bool:
     return bool(User.query.filter_by(email=email))
 
 
-def get_missing_fields(data: dict, required_fields=REQUIRED_FIELDS) -> tuple:
+def get_missing_fields(data: dict, required_fields) -> tuple:
     """Gets the missing fields on the request json."""
     return tuple(filter(lambda x: x not in data.keys(), required_fields))
 

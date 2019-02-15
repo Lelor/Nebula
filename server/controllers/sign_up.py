@@ -3,7 +3,8 @@ from flask import Blueprint, jsonify, request, make_response
 from server.helpers.sign_up import (email_exists,
                                     username_exists,
                                     register_user,
-                                    get_missing_fields,)
+                                    get_missing_fields,
+                                    REQUIRED_FIELDS)
 
 
 bp = Blueprint('sign_up', __name__, url_prefix='/api/sign_up')
@@ -41,7 +42,7 @@ def check_duplicate_email():
 
 @bp.route('register_user', methods=['POST'])
 def register_new_user():
-    missing_fields = get_missing_fields(request.form)
+    missing_fields = get_missing_fields(request.form, REQUIRED_FIELDS)
     if missing_fields:
         res = make_response(
             jsonify({'missing_parameters': missing_fields})
